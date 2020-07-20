@@ -4,12 +4,20 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "server:dev": "export NODE_ENV=development WEBPACK_TARGET=node SSR_ENV=dev && node --inspect server/bin/www",
+    "dev": "concurrently \"npm run serve\" \"npm run server:dev\" ",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "core-js": "^3.6.4",
+    "koa": "^2.11.0",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^8.0.8",
+    "koa-static": "^5.0.0",
     "lodash.merge": "^4.6.2",
+    "memory-fs": "^0.5.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
     "vue-server-renderer": "^2.6.11",
