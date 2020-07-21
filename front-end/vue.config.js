@@ -35,6 +35,12 @@ module.exports = {
                     optimizeSSR: false,
                 });
             });
+        config
+            .plugin('html-index')
+            .tap(options => {
+                options[0].minify = false;
+                return options;
+            });
     },
     configureWebpack: {
         // 需要开启source-map文件映射，因为服务器端在渲染时，

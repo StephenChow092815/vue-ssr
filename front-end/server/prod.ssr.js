@@ -6,11 +6,13 @@ const router = require('koa-router')();
 const resolve = file => path.resolve(__dirname, file);
 
 const { createBundleRenderer } = require('vue-server-renderer');
-const bundle = require('vue-ssr-server-bundle.json');
-const clientManifest = require('vue-ssr-client-manifest.json');
+
+console.log('==================')
+const bundle = require('../dist/vue-ssr-server-bundle.json');
+const clientManifest = require('../dist/vue-ssr-client-manifest.json');
 const renderer = createBundleRenderer(bundle, {
     runInNewContext: false,
-    template: fs.readFileSync(resolve('index.html'), 'utf-8'),
+    template: fs.readFileSync(resolve('../dist/index.html'), 'utf-8'),
     clientManifest,
 });
 

@@ -1,1 +1,2 @@
-require('runkoa')(__dirname + '/app.js')
+const path = require('path');
+require('runkoa')(path.resolve(__dirname, '../app.js'))

@@ -11,7 +11,6 @@ const { createBundleRenderer } = require("vue-server-renderer");
 const serverCompiler = webpack(webpackConf);
 const mfs = new MemoryFS();
 serverCompiler.outputFileSystem = mfs;
-
 // 监听文件修改，实时编译获取最新的 vue-ssr-server-bundle.json
 let bundle;
 serverCompiler.watch({}, (err, stats) => {
@@ -25,6 +24,7 @@ serverCompiler.watch({}, (err, stats) => {
         webpackConf.output.path,
         'vue-ssr-server-bundle.json',
     );
+    console.log(webpackConf.output.path, '--------------------')
     bundle = JSON.parse(mfs.readFileSync(bundlePath, 'utf-8'));
     console.log('New bundle generated.');
 })
@@ -57,6 +57,7 @@ const renderToString = (context, renderer) => {
 };
 
 router.get('*', async (ctx) => {
+    console.log('server logger')
     const renderer = await handleRequest(ctx);
     try {
         const html = await renderToString(ctx, renderer);
