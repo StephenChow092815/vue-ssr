@@ -24,7 +24,6 @@ serverCompiler.watch({}, (err, stats) => {
         webpackConf.output.path,
         'vue-ssr-server-bundle.json',
     );
-    console.log(webpackConf.output.path, '--------------------')
     bundle = JSON.parse(mfs.readFileSync(bundlePath, 'utf-8'));
     console.log('New bundle generated.');
 })
@@ -41,7 +40,7 @@ const handleRequest = async ctx => {
 
     const renderer = createBundleRenderer(bundle, {
         runInNewContext: false,
-        template: fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8'),
+        template: fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf-8'),
         clientManifest,
     });
 
@@ -56,14 +55,14 @@ const renderToString = (context, renderer) => {
     });
 };
 
-router.get('*', async (ctx) => {
-    console.log('server logger')
-    const renderer = await handleRequest(ctx);
-    try {
-        const html = await renderToString(ctx, renderer);
-        console.log(html);
-        ctx.body = html;
-    } catch(e) {}
-});
+// router.get('/', async (ctx) => {
+//     console.log('server logger')
+//     const renderer = await handleRequest(ctx);
+//     try {
+//         const html = await renderToString(ctx, renderer);
+//         console.log(html);
+//         ctx.body = html;
+//     } catch(e) {}
+// });
 
-module.exports = router;
+module.exports = renderToString;
