@@ -11,6 +11,7 @@ const { createBundleRenderer } = require("vue-server-renderer");
 const serverCompiler = webpack(webpackConf);
 const mfs = new MemoryFS();
 serverCompiler.outputFileSystem = mfs;
+
 // 监听文件修改，实时编译获取最新的 vue-ssr-server-bundle.json
 let bundle;
 serverCompiler.watch({}, (err, stats) => {
@@ -40,7 +41,7 @@ const handleRequest = async ctx => {
 
     const renderer = createBundleRenderer(bundle, {
         runInNewContext: false,
-        template: fs.readFileSync(path.resolve(__dirname, '../dist/index.html'), 'utf-8'),
+        template: fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8'),
         clientManifest,
     });
 
@@ -55,14 +56,13 @@ const renderToString = (context, renderer) => {
     });
 };
 
-// router.get('/', async (ctx) => {
-//     console.log('server logger')
-//     const renderer = await handleRequest(ctx);
-//     try {
-//         const html = await renderToString(ctx, renderer);
-//         console.log(html);
-//         ctx.body = html;
-//     } catch(e) {}
-// });
+router.get('*', async (ctx) => {
+    const renderer = await handleRequest(ctx);
+    try {
+        const html = await renderToString(ctx, renderer);
+        console.log(html);
+        ctx.body = html;
+    } catch(e) {}
+});
 
-module.exports = renderToString;
+module.exports = router;
