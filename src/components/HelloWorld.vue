@@ -1,6 +1,6 @@
 <template>
-  <div class="hello">
-    hello
+  <div class="hello" >
+    <button @click="hello">hello</button>
   </div>
 </template>
 
@@ -9,6 +9,12 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  methods: {
+    hello () {
+      console.log('hello')
+      this.$router.push('/test')
+    }
   }
 }
 </script>

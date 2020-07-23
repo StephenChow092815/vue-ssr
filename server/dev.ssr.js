@@ -62,7 +62,9 @@ router.get('*', async (ctx) => {
         const html = await renderToString(ctx, renderer);
         console.log(html);
         ctx.body = html;
-    } catch(e) {}
+    } catch(e) {
+        console.log(e)
+    }
 });
 
 module.exports = router;
