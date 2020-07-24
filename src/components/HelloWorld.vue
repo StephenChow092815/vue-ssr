@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" >
+  <div class="hello">
     <button @click="hello">hello</button>
   </div>
 </template>
@@ -12,7 +12,7 @@ export default {
   },
   methods: {
     hello () {
-      console.log('hello')
+      console.log('hello1')
       this.$router.push('/test')
     }
   }

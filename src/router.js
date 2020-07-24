@@ -1,28 +1,37 @@
 // router.js
-import Vue from 'vue';
-import Router from 'vue-router';
+import Vue from 'vue'
+import Router from 'vue-router'
 // const Test = () => require('./components/Test.vue')
 // const HelloWorld = () => require('./components/HelloWorld.vue')
-Vue.use(Router);
+import HelloWorld from './components/HelloWorld.vue'
+import Test from './components/Test.vue'
+import NotFount from './components/404.vue'
+Vue.use(Router)
 
 export function createRouter() {
-    return new Router({
-        mode: 'history',
-        fallback: false,
-        routes: [
-            {
-                path: '/index',
-                component: () => import('./components/Test.vue')
-            },
-            {
-                path: '/hello',
-                component: () => import('./components/HelloWorld.vue')
-            },
-            {
-                path: '/',
-                redirect: '/hello'
-            },
-            { path: '*', component: () => import('./components/404.vue') }
-        ],
-    });
+  let router = new Router({
+    mode: 'history',
+    routes: [
+      {
+        path: '/',
+        name: 'HelloWorld',
+        component: HelloWorld,
+      },
+      {
+        path: '/test',
+        name: 'Test',
+        component: Test,
+      },
+      {
+        path: '*',
+        name: '404',
+        component: NotFount,
+      },
+    ],
+  })
+  router.beforeEach((from, to, next) => {
+    console.log(from, to, 111)
+    next()
+  })
+  return router
 }
