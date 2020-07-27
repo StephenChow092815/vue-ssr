@@ -2,20 +2,21 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <top-header />
-    <left-bar />
+    <!-- <left-bar /> -->
+    <button @click="$router.push('/generate')">generate</button>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import TopHeader from './components/TopHeader.vue'
-import LeftBar from './components/LeftBar.vue'
+// import LeftBar from './components/LeftBar.vue'
 
 export default {
   name: 'App',
   components: {
     TopHeader,
-    LeftBar
+    // LeftBar
   },
   created () {
     // console.log(this.$router)

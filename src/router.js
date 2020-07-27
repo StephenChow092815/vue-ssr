@@ -6,6 +6,7 @@ import Router from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import Test from './components/Test.vue'
 import NotFount from './components/404.vue'
+import Generate from './views/Generate.vue'
 Vue.use(Router)
 
 export function createRouter() {
@@ -21,6 +22,11 @@ export function createRouter() {
         path: '/test',
         name: 'Test',
         component: Test,
+      },
+      {
+        path: '/generate',
+        name: 'Generate',
+        component: Generate,
       },
       {
         path: '*',
