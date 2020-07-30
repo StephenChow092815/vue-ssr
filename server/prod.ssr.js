@@ -23,6 +23,7 @@ const renderToString = (context) => {
 }
 
 router.get('*', async (ctx) => {
+  console.log('prod')
   let html = ''
   try {
     html = await renderToString(ctx)
@@ -30,4 +31,4 @@ router.get('*', async (ctx) => {
   } catch (e) {}
 })
 
-module.exports = router
+module.exports = { renderToString }

@@ -7,9 +7,7 @@ if (window.__INITIAL_STATE__) {
 }
 
 router.onReady(() => {
-  console.log('outer.onReady')
   router.beforeResolve((to, from, next) => {
-    console.log(to, 111111111)
     const matched = router.getMatchedComponents(to)
     const prevMatched = router.getMatchedComponents(from)
 
@@ -22,10 +20,8 @@ router.onReady(() => {
     if (!activated.length) {
       return next()
     }
-    console.log(activated, '/////')
     Promise.all(
       activated.map((c) => {
-        console.log(c, '----')
         if (c.extendOptions && c.extendOptions.asyncData) {
           return c.extendOptions.asyncData({
             store,

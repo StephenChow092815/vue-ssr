@@ -5,11 +5,11 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import ComRecursion from '../components/ComRecursion'
 // import Test from '../components/Test'
-export default {
-  asyncData ({ store, route, options }) {
-    console.log(store, route, options, 'async data', '------')
+export default Vue.extend({
+  asyncData ({ store}) {
     return store.dispatch('generate');
   },
   components: {
@@ -22,13 +22,13 @@ export default {
   },
   watch: {
     comsData (val) {
-      console.log(val)
+      console.log(val, 'generate')
     }
   },
   computed: {
     comsData () {
-      return this.$store.comsData
+      return this.$store.getters.getComsList
     }
   }
-}
+})
 </script>

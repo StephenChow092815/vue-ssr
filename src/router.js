@@ -36,7 +36,6 @@ export function createRouter() {
     ],
   })
   router.beforeEach((from, to, next) => {
-    console.log(from, to, 111)
     next()
   })
   return router

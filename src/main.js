@@ -2,7 +2,9 @@ import Vue from 'vue'
 import App from './App.vue'
 import { createRouter } from './router'
 import { createStore } from './store'
-import 'element-ui/lib/theme-chalk/index.css';
+// import 'element-ui/lib/theme-chalk/index.css';
+import axios from './fetch'
+Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 // new Vue({
 //   render: h => h(App),

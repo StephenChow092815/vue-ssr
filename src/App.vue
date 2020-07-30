@@ -19,7 +19,6 @@ export default {
     // LeftBar
   },
   created () {
-    // console.log(this.$router)
   }
 }
 </script>
